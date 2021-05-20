@@ -56,6 +56,11 @@ services:
       - "${API_ADDR:-1633}${BEE_API_ADDR:-:1633}"
       - "${P2P_ADDR:-1634}${BEE_P2P_ADDR:-:1634}"
       - "${DEBUG_API_ADDR:-127.0.0.1:1635}${BEE_DEBUG_API_ADDR:-:1635}"
+    volumes:
+      - bee-1:/home/bee/.bee
+    command: start
+    depends_on:
+      - clef-1
 
 services:
   clef-2:
@@ -115,10 +120,10 @@ services:
       - "${DEBUG_API_ADDR:-127.0.0.1:1735}${BEE_DEBUG_API_ADDR:-:1735}"
 
     volumes:
-      - bee-1:/home/bee/.bee
+      - bee-2:/home/bee/.bee
     command: start
     depends_on:
-      - clef-1
+      - clef-2
 volumes:
   clef-1:
   bee-1:
